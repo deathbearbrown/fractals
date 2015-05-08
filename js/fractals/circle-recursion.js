@@ -2,72 +2,46 @@ window.onload = function(){
 //fraggles
 	var canvas = document.getElementById('canvas'),
 		context = canvas.getContext('2d'),
-		width = canvas.width = window.innerWidth,
-		height = canvas.height = window.innerHeight;
-
+		width = canvas.width = 300,
+		height = canvas.height = 300;
 		context.translate(width/2,height/2);
-
-		var p0={
+		var p0 = {
 			x:0,
-			y:-321
-		},
-		p1 = {
-			x:278,
-			y:160
-		},
-		p2 = {
-			x:-278,
-			y:160
+			y:0
 		};
+		var colors = Gradient('#FF006F', '#37B3CC', 10);
+		var number = 0;
 
-		var limit = 6;
+		drawCircle(0,0,150);
 
-		var colors = Gradient('#EDDE45', '#FF006F', 10);
-		var number=0;
 
-		//sierpinski triangle 
-
-		sierpinski(p0,p1,p2, limit);
-
-		function sierpinski(p0, p1, p2, limit){
-			if (limit > 0){
-				var pA = {
-					x: (p0.x+p1.x)/2,
-					y: (p0.y+p1.y)/2
-				},
-				pB = {
-					x: (p1.x+p2.x)/2,
-					y: (p1.y+p2.y)/2
-				},
-				pC = {
-					x: (p2.x+p0.x)/2,
-					y: (p2.y+p0.y)/2
-				};
-
-				sierpinski(p0, pA, pC, limit-1);
-				sierpinski(pA, p1, pB, limit-1);
-				sierpinski(pC, pB, p2, limit-1);
-			} else {
-				drawTriangle(p0,p1,p2);
+		function drawCircle (x,y, radius){
+			drawEllipse(x, y, radius);
+			if (radius>30){
+		    drawCircle(x + radius/2, y, radius/2);
+		    drawCircle(x - radius/2, y, radius/2);
+		    drawCircle(x, y + radius/2, radius/2);
+		    drawCircle(x, y - radius/2, radius/2);
 			}
 		}
 
-		function drawTriangle(p0, p1, p2){
-			context.closePath();
-			number = getRandomInt(0,9);
-			context.fillStyle=colors[number];
-			context.moveTo(p0.x, p0.y);
-			context.lineTo(p1.x, p1.y);
-			context.lineTo(p2.x, p2.y);
-			context.fill();
-			context.beginPath();
+
+		function drawEllipse(x,y,radius){
+      context.closePath();
+      context.arc(x, y, radius, 0, 2 * Math.PI, false);
+      context.lineWidth = 1;
+      number = getRandomInt(0,9);
+			context.strokeStyle=colors[number];
+      context.stroke();
+      context.beginPath();
 		}
+	
+
 
 	function getRandomInt(min, max) {
 	  return Math.floor(Math.random() * (max - min)) + min;
 	}
-//colors
-
+	//colors
 	function _componentToHex(c) {
 	    var hex = c.toString(16);
 	    return hex.length == 1 ? "0" + hex : hex;
@@ -118,5 +92,4 @@ window.onload = function(){
     }
     return colorArray;
   }
-
 };

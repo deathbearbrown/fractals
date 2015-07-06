@@ -2,28 +2,28 @@
 <html>
 <head>
 	<title>Coding Math: Fractals</title>
-	<script type="text/javascript" src="js/fractals/pythagorean-tree-random.js"></script>
+	<script type="text/javascript" src="js/fractals/mandlebrot.js"></script>
   <link rel="shortcut icon"  href="/favicon.ico"/>
+  <style type="text/css">
+		html, body {
+			margin: 0px;
+		}
+		canvas {
+			display: block;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	</style>
 </head>
 
 
 <body>
-<!-- From this youtubes:
-https://www.youtube.com/watch?v=bIfNwgUVjV8&list=PL7wAPgl1JVvWZPcT0fEfSv5EhLbfWFfVC
 
-<h3>Simple Shapes:</h3>
-dot, line triangle, square, circle, oval, curve
-
-<h3>Complex shapes, compound shapes, composed of subshapes:</h3>
-house, smilie face
-
-<p>Fractals are complex shapes. Self similarity. copies of self.</p>
-
-<p>Infinite (theoretically)</p>
--->
 
 <canvas id="canvas"></canvas>
-
-
+<!-- <canvas id="particleCanvas"></canvas>
+ -->
+  <div id="zoom"></div>
 </body>
 </html>

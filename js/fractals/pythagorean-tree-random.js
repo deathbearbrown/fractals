@@ -31,6 +31,7 @@ window.onload = function(){
 			context.rotate(angle);
 			context.fillStyle=colors[limit-1];
 			context.fillRect(0,0, size, -size);
+			
 
 			//left branch
 			var x0 = 0,
